@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>DataTable with Ajax Reload</title>
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
+	<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
+	<script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+	<script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap4.min.js"></script>
+	<script src="/js/logch.js"></script>
+</head>
+
+<body>
+	<button onclick="location.href='/log'" value="點我去登入頁">點我去登入頁</button>
+	<button onclick="logout()" value="登出">登出</button>
+	<button id="chan" value="關閉更動">關閉更動</button>
+	<table id="userTable" class="table table-striped table-bordered" style="width:100%">
+		
+			<thead>
+            <tr>
+                <th>id</th>
+                <th>email</th>
+                <th>phone</th>
+                <th>password</th>
+               
+            </tr>
+        </thead>
+		
+	</table>
+	<script type="text/javascript">
+		var table;
+		var chang = "1";
+		var strs = "";
+		var ptsd;
+		$(document).ready(function () {
+			logch();
+			creat();
+			 reloadTableData();
+			
+
+
+
+		});
+		function reloadTableData() {
+			table.ajax.reload(null, false); // null 表示不使用自定義的 URL，false 表示不重新繪製資料表
+			setTimeout(reloadTableData(),5000);
+			
+		}
+		function creat() {
+			  table = $('#userTable').DataTable({
+			    ajax: {
+			      url: '/all', // 資料來源的 URL
+			      type: 'GET', // HTTP 方法
+			      dataType: 'json', // 資料類型
+		/*	      success: function (users) {
+			        // 成功取得資料後的處理邏輯
+			        alert("牛B症狀犯了");
+			        console.log(users);
+			        ptsd=users;
+			      },*/
+			      data: function(x){},
+			      dataSrc: function(json){
+			    	  console.log(json);
+			    	return json;
+			    }
+			    },
+			    columns: [
+			      {data: 'id', title: "id"},
+			      {data: 'email', title: "email"},
+			      //{data: 'phone', title: "phone"},
+			      {data: 'password', title: "password"}
+			    //  ,{data: 'position', title: "position"}
+			      
+			      ,{
+			        data: null,
+			        title: "操作功能",
+			        render: function (data, type, row) {
+			          return '<button type="button" onclick="editUser(' + row.id + ', \'' + row.email + '\')">編輯</button> ' +
+			                 '<button type="button" onclick="deleteUser(' + row.id + ', \'' + row.email + '\')">刪除</button>';
+			        }
+			      }
+			    ],
+			    ordering: true, // 啟用排序功能
+			    searching: true, // 啟用搜尋功能
+			   
+			    lengthChange: true, // 允許使用者修改每頁顯示的資料筆數
+			    language: {
+			      url: "https://cdn.datatables.net/plug-ins/1.11.3/i18n/zh_Hant.json"
+			    }
+			  });
+			}
+
+
+
+
+
+		function logout() {
+			const username = "";
+			$.ajax({
+				url: '/logout',
+				type: 'POST',
+				data: {
+					username: username
+				},
+				success: function (data) {
+					if (data === "success") {
+						location.href = "/log";
+					}
+				}
+			});
+		}
+		function close() {
+			if (chang != "0") {
+				chang = "0";
+				strs = "開啟更動";
+
+			}
+			else {
+				chang = "1";
+				strs = "關閉更動";
+			}
+			console.log("0487");
+			document.getElementById("chan").innerHTML = strs;
+
+		}
+
+		function editUser(id, email) {
+			// 根据用户ID执行编辑操作
+			console.log('Edit User ID:', id);
+			$.ajax({
+				url: '/edit1',
+				type: 'POST',
+				data: {
+					id: id,
+					email: email
+				},
+				success: function (data) {
+					if (data === "success") {
+						location.href = "/edit";
+
+					} else {
+						// 删除失败的处理逻辑
+						console.error('Failed to edit user with ID:', id);
+					}
+				},
+
+			});
+			// TODO: 编辑逻辑
+		}
+
+		function deleteUser(id, email) {
+			console.log('Delete User ID:', id);
+			console.log('Delete User email:', email);
+			$.ajax({
+				url: '/delete',
+				type: 'POST',
+				data: {
+					id: id,
+					email: email
+				},
+				success: function (data) {
+					if (data === "success") {
+						location.href = "/logined"
+						console.log("fuck" + id);
+					} else {
+						// 删除失败的处理逻辑
+						console.error('Failed to delete user with ID:', id);
+					}
+				},
+				error: function (xhr, status, error) {
+					// 删除失败的处理逻辑
+					console.error('Failed to delete user with ID:', id);
+				}
+			});
+		}
+
+
+
+	</script>
+
+
+</body>
+
+</html>

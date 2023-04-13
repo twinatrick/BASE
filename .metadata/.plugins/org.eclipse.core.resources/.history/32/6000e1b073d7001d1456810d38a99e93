@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+	<script src="/js/logch.js"></script>
+</head>
+
+<body>
+	<script type="text/javascript">
+		var table;
+		var chang = "1";
+		var strs = "";
+		$(document).ready(function () {
+	
+			showdatabase();
+			
+			
+			console.log(strs);
+		});
+		function showdatabase() {
+			$.ajax({
+				url: "/all",
+				type: "GET",
+				dataType: "json",
+				success: function (data)
+					{strs=JSON.stringify(data);}
+					
+					
+				
+			
+		})}
+		
+		
+	
+
+
+
+	</script>
+
+	
+</body>
+
+</html>

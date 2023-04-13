@@ -1,0 +1,12 @@
+package com.example.demo;
+
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class AppConfig {
+    @Bean
+    public HttpServletRequest httpServletRequest() {
+        // 返回一个HttpServletRequest的实现对象
+        // 可以根据您的应用程序需求进行相应的实现
+    }
+}

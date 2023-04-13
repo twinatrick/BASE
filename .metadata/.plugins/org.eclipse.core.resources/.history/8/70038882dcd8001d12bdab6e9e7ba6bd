@@ -1,0 +1,64 @@
+package com.example.demo;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import jakarta.servlet.http.HttpSession;
+
+
+
+@Controller
+public class SpringBootHelloWorld {
+	@Autowired
+	private HttpSession httpSession;
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+	
+	@GetMapping("/edit")
+	public String helloed(){
+		return "edit";
+	}
+	
+	@GetMapping("/index")
+	public String helloIndex(){
+		return "index";
+	}
+	
+	@GetMapping("/log")
+	public String hellolog(){
+		return "login";
+	}
+	
+	
+	@GetMapping("/error")
+	public String helloerror(){
+		return "error";
+	}
+	@GetMapping("/logined")
+	public String hellologined(){
+		return "logined";
+	}
+	@GetMapping("/sign")
+	public String hellosign(){
+		return "sign";
+	}
+	
+	
+	@GetMapping("/redirect")
+    public ModelAndView redirect() {
+        String url ="";
+        if( httpSession.getAttribute("sessionId")!=null) {
+        	url="/logined";
+        }else {
+        	url="/log";
+        }
+        return new ModelAndView("redirect:" + url); // 重新導向到指定的url
+    }
+}

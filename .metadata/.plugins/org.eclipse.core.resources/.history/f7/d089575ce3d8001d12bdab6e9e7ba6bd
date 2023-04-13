@@ -1,0 +1,66 @@
+package com.example.demo.aop;
+
+
+import java.util.Arrays;
+
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import jakarta.servlet.http.HttpSession;
+
+@Aspect
+@Component
+public class LogAspect {
+	@Autowired
+	private HttpSession httpSession;
+    @Pointcut("execution(* com.example.demo..*(..))")
+    public void pointcut() {
+    }
+    @Pointcut("execution(* hello*())")
+    public void pointcutre() {
+    }
+    @Before("pointcutre()")
+    public String beforere(JoinPoint joinPoint) {
+    	 String className = joinPoint.getTarget().getClass().getName(); // 取得切入點的類別名稱
+         String methodName = joinPoint.getSignature().getName();
+         String[] arr 	=new String	[] {"hellologined","helloedit"};// 取得切入點的方法名稱
+         String[] arr2 	=new String	[] {"hellosign","hellologin","helloerror"};// 取得切入點的方法名稱
+         System.out.printf(methodName);
+         if(Arrays.asList(arr).contains(methodName)) {
+        	 if( httpSession.getAttribute("sessionId")==null) {
+        		return "/redirect"; 
+        	 }
+         }if(Arrays.asList(arr2).contains(methodName)) {
+        	 if( httpSession.getAttribute("sessionId")!=null) {
+        		return "/redirect"; 
+        	 }
+         }
+         methodName=methodName.replace("hello","");
+         System.out.printf(methodName);
+		return methodName;
+    }
+   
+    @Before("pointcut()")
+    public void before(JoinPoint joinPoint) {
+    	 String className = joinPoint.getTarget().getClass().getName(); // 取得切入點的類別名稱
+         String methodName = joinPoint.getSignature().getName();
+        
+        Logger logger = LoggerFactory.getLogger(joinPoint.getTarget().getClass().getName());
+        logger.info("start");
+        logger.info(methodName );
+    }
+
+    @After("pointcut()")
+    public void after(JoinPoint joinPoint) {
+        Logger logger = LoggerFactory.getLogger(joinPoint.getTarget().getClass().getName());
+        logger.info("end");
+    }
+
+}

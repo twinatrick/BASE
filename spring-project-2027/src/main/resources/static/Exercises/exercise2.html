@@ -1,0 +1,204 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=iso-8859-1"/>
+    <link href="../Style/style.css" rel="stylesheet" type="text/css" />
+    <script src="../Scripts/jquery-2.1.4.js"></script>
+    <script type="text/javascript">
+        var list1 = new Array();
+        var list2 = new Array();
+        
+        //test data
+        list1[0] = "test1-1";
+        list1[1] = "test1-2";
+        list1[2] = "test1-3";
+        list1[3] = "test1-4";
+        list1[4] = "test1-5";
+        list1[5] = "test1-6";
+        list2[0] = "test2-1";
+        list2[1] = "test2-2";
+        list2[2] = "test2-3";
+        var l = new Array();
+        
+         l[1]=list1.length;
+         l[2]=list2.length;    
+        $(document).ready(function(){
+            //add two array to select menu
+           ref(1);
+           ref(2);
+        });
+    	function arrayre(x){
+            let chen=0;
+            let end=0;
+            let a=0;
+            let chas =undefined;
+            if (x==1){chen=list1.findIndex(e => e==chas)
+                end=list1.length-1;
+            a=list1[chen];
+            list1[chen]=list1[end];
+            list1[end]=a;
+            list1.pop();
+            }
+            if (x==2){chen=list2.findIndex(e => e==chas)
+                end=list2.length-1;
+            a=list2[chen];
+            list2[chen]=list2[end];
+            list2[end]=a;
+            
+            
+            list2.pop();
+            }
+        }
+        function del(x) {
+            let chas;
+            let ch=0;
+
+            if (x == 1) {
+                chas=document.getElementById("list1").value;
+               
+                
+                ch=list1.findIndex(e => e==chas)
+                console.log(ch);
+                console.log(l[x]);
+                if(ch==-1)
+                return 0;
+
+                delete list1[ch];
+                arrayre(x);
+                ref(1);
+                
+               l[x]--;
+            }
+             if (x==2){
+                
+                chas=document.getElementById("list2").value;
+                ch=list2.findIndex(e => e==chas)
+                if(ch==-1)
+                return 0;
+                delete list2[ch];
+                arrayre(x);
+                ref(2);
+                l[x]--;
+            }
+
+    	}
+    	function ref(x ){
+            let str;
+            if(x==1){
+                str = "";
+                for (i = 0; i < list1.length; i++){
+                    str += "<option>" + list1[i] + "</option>";
+                     }
+                document.getElementById("list1").innerHTML= str;
+            }
+            if(x==2){
+                str = "";
+                for (i = 0; i < list2.length; i++){
+                    str += "<option>" + list2[i] + "</option>";
+                     }
+                document.getElementById("list2").innerHTML= str;
+            }
+
+        }
+        function add(x) {
+            let datas=0;
+            if (x == 1&&document.getElementById("input1").value!="") {
+                 datas=document.getElementById("input1").value;
+
+                list1.push (datas);
+               
+               ref(1);
+                l[x]++;
+                
+            }
+            if (x == 2&&document.getElementById("input2").value!="") {
+                 datas=document.getElementById("input2").value;
+                 list2.push (datas);
+                ref(2);
+                l[x]++;
+            }
+        }
+    	function move(x){
+            let datas=0;
+            let ch,chas;
+            if(x==1){X_=2;}
+            if(x==2){X_=1;}
+            if(x==1){
+                
+                chas=document.getElementById("list1").value;
+                ch=list1.findIndex(e => e==chas);
+                console.log(ch);
+                console.log(chas);
+                del(x);
+                l[x]--;
+                list2.push (chas);
+                ref(X_);
+                l[X_]++;
+               
+                }
+            if(x==2){
+                
+                chas=document.getElementById("list2").value;
+                ch=list2.findIndex(e => e==chas);
+               
+                del(x);
+                list1.push (chas);
+                ref(X_);
+                l[x]--;
+                l[X_]++;
+
+            }
+    	}
+    </script>
+</head>
+<body>
+    <div class="container2">
+		<div class="content">
+            <p>
+                以下兩個選單中的資料可互相移動，且可以自行新增/刪除資料。
+                <blockquote>Hint: 可以不用對Array進行存取</blockquote>
+            </p>
+            
+            <p>
+                <table>
+                    <tr align="center">
+                        <td>
+                            <select id="list1" size="10" style="width:200px">
+                                
+                            </select>
+                        </td>
+                        <td width="140px">
+                            <input type="button" style="width:100px" onClick="move(1)" value="往右移動>>"> <br/><br/><br/>
+                            <input type="button" style="width:100px" onClick="move(2)" value="<<往左移動">
+                        </td>
+                        <td>
+                            <select id="list2" size="10" style="width:200px">
+                            　   
+                            </select>
+                        </td>
+                    </tr>
+                    <tr height="50px" align="center">
+                        <td>
+                            <input id="del1" type="button" style="width:50px" onClick="del(1);" value="刪除">
+                        <td>
+                        <td>
+                            <input id="del2" type="button" style="width:50px" onClick="del(2);" value="刪除">
+                        <td>
+                    </tr>
+                    <tr align="center">
+                        <td>
+                            <input id="input1" type="text" style="width:100px">
+                            <input id="add1" type="button" style="width:50px" onClick="add(1);" value="新增">
+                        <td>
+                        <td>
+                            <input id="input2" type="text" style="width:100px">
+                            <input id="add2" type="button" style="width:50px" onClick="add(2);" value="新增">
+                        <td>
+                    </tr>
+                </table>        
+            </p>
+	   </div>
+	</div>
+</body>
+</html>

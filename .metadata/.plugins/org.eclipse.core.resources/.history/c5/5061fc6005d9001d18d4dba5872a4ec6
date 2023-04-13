@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>註冊頁面</title>
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f8f8f8;
+			padding: 20px;
+		}
+		.container {
+			max-width: 400px;
+			margin: 0 auto;
+			background-color: #ffffff;
+			padding: 20px;
+			border-radius: 5px;
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+		}
+		h1 {
+			text-align: center;
+			margin-top: 0;
+		}
+		label, input {
+			display: block;
+			width: 100%;
+			margin-bottom: 10px;
+		}
+		button {
+			display: block;
+			width: 100%;
+			padding: 10px;
+			background-color: #007bff;
+			color: #ffffff;
+			font-size: 16px;
+			font-weight: bold;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+		button:hover {
+			background-color: #0056b3;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<h1>註冊</h1>
+		<button onclick="location.href='/log'" value="點我去登入頁">點我去登入頁</button>
+		<input type="text" id="username" placeholder="請輸入要註冊帳號">
+		<input type="text" id="pawd" placeholder="請輸入要註冊密碼">
+		<button id="submit-btn" onclick="sub(1)">註冊</button>
+	</div>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+
+		});
+		function sub(X) {
+			const username = document.getElementById("username").value;
+			const pass = document.getElementById("pawd").value;
+			const test = /^(?=.{5,15}$)[a-zA-Z0-9]*$/;
+
+			document.getElementById("username").value = '';
+			document.getElementById("pawd").value = '';
+			if (
+				test.test(username) && test.test(pass)) {
+				$.ajax({
+					url: '/sign',
+					type: 'POST',
+					data: {
+						username: username,
+						password: pass
+					},
+					success: function (data) {
+						if (data === "success") {
+							alert('註冊成功');
+							location.href = "/logined";
+						} else {
+							alert("註冊失敗");
+						}
+					}
+				}
+				)
+			}
+			else {alert("不符合規定");}
+
+		};
+
+	</script>
+</body>
+
+</html>

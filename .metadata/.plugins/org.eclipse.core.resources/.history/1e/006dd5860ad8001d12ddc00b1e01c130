@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+	<script src="/js/logch.js"></script>
+</head>
+
+<body>
+	<script type="text/javascript">
+	
+	$(document).ready(function () {
+
+		logch();
+
+	});
+	
+
+
+
+	</script>
+
+<input type="text" id="id" placeholder="請輸入要更改ID">
+<input type="text" id="username" placeholder="請輸入要更改帳號">
+<input type="text" id="password" placeholder="請輸入要更改密碼">
+</body>
+
+</html>

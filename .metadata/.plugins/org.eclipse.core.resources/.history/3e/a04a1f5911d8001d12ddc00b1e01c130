@@ -1,0 +1,36 @@
+package com.example.demo;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowCallbackHandler;
+import com.example.*;
+import javax.servlet.http.Cookie;
+
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
+public class server {
+	
+private static final RowCallbackHandler StaffModelMapper = null;
+	
+	@Autowired
+	private HttpSession httpSession;
+
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+
+	
+
+
+	
+	
+	
+	
+	 	}
+
+
+
+	
+	

@@ -1,0 +1,29 @@
+package com.example.demo.aop;
+
+
+import lombok.extern.log4j.Log4j2;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.springframework.stereotype.Component;
+
+@Log4j2
+@Aspect
+@Component
+public class LogAspect {
+
+    @Around("@annotation(com.abc.demo.annotation.LogInfo)")
+    public Object logInfo(ProceedingJoinPoint joinPoint) throws Throwable {
+        String className = joinPoint.getSignature().getDeclaringType().getSimpleName();
+        String annotatedMethodName = joinPoint.getSignature().getName();
+
+        System.out.printf("[{}.{}] start", className, annotatedMethodName);
+
+        Object object = joinPoint.proceed();
+
+        System.out.printf("[{}.{}] end", className, annotatedMethodName);
+
+        return object;
+    }
+
+}

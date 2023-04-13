@@ -1,0 +1,24 @@
+package com.example.demo;
+
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.springframework.stereotype.Component;
+
+@Aspect
+@Component
+public class LoginAspect {
+
+    @Autowired
+    private HttpSession httpSession;
+
+    @Before("execution(* com.example.demo.LoginController.*(..)) && !execution(* com.example.demo.LoginController.login(..))")
+    public void checkLogin() throws IOException {
+        // 檢查是否已登入
+        if (httpSession.getAttribute("email") == null) {
+            // 未登入，跳轉到登入頁面
+            HttpServletResponse response = ((ServletRequestAttributes) RequestContextHolder
+                    .currentRequestAttributes()).getResponse();
+            response.sendRedirect("/login");
+        }
+    }
+}

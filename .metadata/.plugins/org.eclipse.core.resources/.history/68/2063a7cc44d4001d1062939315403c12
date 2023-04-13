@@ -1,0 +1,59 @@
+package com.example.demo;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowCallbackHandler;
+import com.example.*;
+import jakarta.servlet.http.HttpSession;
+
+public class server {
+	
+private static final RowCallbackHandler StaffModelMapper = null;
+	
+	@Autowired
+	private HttpSession httpSession;
+
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+
+	
+	
+	
+	
+	public StaffModel getData(StaffModel sm) {
+		
+		 String selectQuery = "SELECT * FROM staffInfo WHERE EMAIL = \'" + sm.getEmail() + "\' AND PASSWORD = \'" + sm.getPassword() + "\'";
+
+	    List<StaffModel> result = jdbcTemplate.query(selectQuery, new StaffModelMapper());
+
+	    if (result.size() > 0) {
+	        return result.get(0);
+	    } else {
+	        return null;
+	    }
+		
+	}
+	
+	
+	
+	public StaffModel TryData(StaffModel sm) {
+		 String selectQuery = "SELECT * FROM staffInfo WHERE EMAIL = \'" + sm.getEmail()+"\'";
+//	 	    System.out.printf(selectQuery);
+
+	 	    List<StaffModel> result = jdbcTemplate.query(selectQuery, new StaffModelMapper());
+	 	   System.out.printf("\n\n\n1234\n");
+	 		 
+	 	    if (result.size() > 0) {
+	 	        return result.get(0);
+	 	    } else {
+	 	        return null;
+	 	    }
+	 		
+	 	}
+
+
+
+	
+	}

@@ -1,0 +1,9 @@
+package com.example.demo;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class HttpServletRequestImpl implements HttpServletRequest {
+    // 实现HttpServletRequest接口的方法
+    // 根据您的应用程序需求进行具体实现
+}

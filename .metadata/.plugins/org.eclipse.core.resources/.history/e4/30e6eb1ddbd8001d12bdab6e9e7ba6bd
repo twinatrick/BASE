@@ -1,0 +1,50 @@
+package com.example.demo;
+
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+
+
+@Controller
+public class SpringBootHelloWorld {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+	
+	@GetMapping("/edit")
+	public String helloed(){
+		return "edit";
+	}
+	
+	@GetMapping("/index")
+	public String helloIndex(){
+		return "index";
+	}
+	
+	@GetMapping("/log")
+	public String hellolog(){
+		return "login";
+	}
+	
+	
+	@GetMapping("/error")
+	public String helloerror(){
+		return "error";
+	}
+	@GetMapping("/logined")
+	public String hellologined(){
+		return "logined";
+	}
+	@GetMapping("/sign")
+	public String hellosign(){
+		return "sign";
+	}
+	
+	
+	
+}

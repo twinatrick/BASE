@@ -1,0 +1,32 @@
+
+export {logch};
+function logch() {
+	const username = "";
+	a = "/logined";
+	b = "/log";
+	c = location.href;
+	arr = c.split("/");
+	c = "/" + arr[arr.length - 1];
+	console.log(c);
+	$.ajax({
+		url: '/loginch',
+		type: 'POST',
+		data: {
+			username: username
+
+		},
+		success: function(data) {
+			if (data === "success") {
+				// 登入成功
+				if (a != c)
+					location.href = a;
+			} else {
+				if (b != c) {
+					console.log(c);
+					location.href = b;
+				}
+			}
+
+		}
+	});
+}

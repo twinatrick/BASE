@@ -1,0 +1,23 @@
+package com.example.demo;
+
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+            // 配置需要进行认证的 URL
+            .antMatchers("/logined").authenticated()
+            // 其他请求不需要认证
+            .anyRequest().permitAll()
+            .and()
+            // 配置登录页面和登录请求的 URL
+            .formLogin().loginPage("/login").defaultSuccessUrl("/logined")
+            .and()
+            // 配置退出登录的 URL
+            .logout().logoutUrl("/logout").logoutSuccessUrl("/login");
+    }
+}

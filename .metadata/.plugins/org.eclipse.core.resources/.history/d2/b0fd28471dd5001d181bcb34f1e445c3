@@ -1,0 +1,60 @@
+package com.example.demo;
+
+
+import java.util.Arrays;
+
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import com.example.*;
+import jakarta.servlet.http.HttpSession;
+
+@Aspect
+@Component
+public class LoginAspect {
+
+    @Autowired
+    private HttpSession httpSession;
+
+    @Pointcut("execution(* com.example.controller.*.*(..))")
+    public void requireAuthentication() {}
+
+
+    // 在切入点方法执行前拦截
+    @Before("requireAuthentication()")
+    public void authenticate(JoinPoint joinPoint) {
+    	if( httpSession.getAttribute("sessionId")!=null) {
+ 			return "success";		
+ 			}
+ 		return "notlogin";
+        // 进行认证判断的逻辑
+        // 可以使用切入点方法中的参数或者其他上下文信息来判断用户是否已登录
+        // 如果未登录，则进行统一的处理，例如重定向到登录页面或者返回错误信息
+        // 如果已登录，则继续执行原方法
+    }
+
+
+    // 在切入点方法执行后拦截
+    @After("loginPointcut(login)")
+    public void afterLogin(JoinPoint joinPoint, LoginController login) {
+        // 在这里添加你的拦截逻辑，例如日志记录、权限校验等
+        System.out.println("After login");
+    }
+
+    // 在切入点方法抛出异常时拦截
+    @AfterThrowing(value = "loginPointcut(login)", throwing = "ex")
+    public void afterThrowingLogin(JoinPoint joinPoint, LoginController login, Throwable ex) {
+        // 在这里添加你的拦截逻辑，例如异常处理、错误页面跳转等
+        System.out.println("After throwing login");
+    }
+}

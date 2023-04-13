@@ -1,0 +1,50 @@
+package com.example.demo;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowCallbackHandler;
+import com.example.*;
+import javax.servlet.http.Cookie;
+
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
+public class server {
+	
+private static final RowCallbackHandler StaffModelMapper = null;
+	
+	@Autowired
+	private HttpSession httpSession;
+
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+
+	
+	public String setCookie(HttpServletResponse response,String ssid) {
+	    // 創建一個新的 Cookie 對象
+	    Cookie cookie = new Cookie("sessionId", ssid); // 替換 "your-session-id" 為實際的 SessionID 值
+	    // 設置 Cookie 的屬性
+	    cookie.setMaxAge(3600); // 設置 Cookie 的過期時間（以秒為單位），這裡設置為 1 小時
+	    cookie.setPath("/"); // 設置 Cookie 的路徑，這裡設置為根路徑，表示整個網站都可以訪問該 Cookie
+	    // 添加 Cookie 到 HTTP 響應
+	    response.addCookie(cookie);
+	    // 返回結果或執行其他操作
+	    return "success";
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	 	}
+
+
+
+	
+	

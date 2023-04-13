@@ -1,0 +1,73 @@
+package com.example.demo;
+
+
+import java.util.Arrays;
+
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+import com.example.*;
+import jakarta.servlet.http.HttpSession;
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+@Aspect
+@Component
+public class RequestValidationAspect {
+	@Qualifier("request")
+    @Autowired
+    private HttpServletRequest request;
+
+    @Autowired
+    private HttpServletResponse response;
+
+    @AfterReturning(pointcut = "execution(* com.example.demo.SpringBootHelloWorld.*(..))", returning = "result")
+    public void afterReturning(JoinPoint joinPoint, Object result) throws Throwable {
+        HttpSession session = (HttpSession) request.getSession();
+        String currentUrl = request.getRequestURI();
+        String username = (String) session.getAttribute("username");
+
+        // 登入后页面跳转
+        if (currentUrl.equals("/log") && username != null) {
+            response.sendRedirect("/logined");
+        }
+
+        // 登出后页面跳转
+        if (currentUrl.equals("/logined") && username == null) {
+            response.sendRedirect("/log");
+        }
+    }
+
+    @Before("execution(* com.example.demo.SpringBootHelloWorld.*(..))")
+    public void before(JoinPoint joinPoint) throws Throwable {
+        HttpSession session = (HttpSession) request.getSession();
+        String currentUrl = request.getRequestURI();
+        String username = (String) session.getAttribute("username");
+
+        // 检查页面请求是否通过，可以根据具体业务逻辑进行处理
+        if (currentUrl.equals("/x") && username == null) {
+            // 页面请求不通过，可以进行相应的处理，比如跳转到错误页面
+            response.sendRedirect("/error");
+        }
+    }
+}

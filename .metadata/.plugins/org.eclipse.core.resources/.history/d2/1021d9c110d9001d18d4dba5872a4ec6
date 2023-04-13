@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+</head>
+
+<body>
+<button onclick="location.href='/login'" value="點我去登入頁">點我去登入頁</button>
+	<input type="text" id="username" placeholder="請輸入要註冊帳號">
+	<input type="text" id="pawd" placeholder="請輸入要註冊密碼">
+	<button id="submit-btn" onclick="sub(1)">註冊</button>
+	<script type="text/javascript">
+		$(document).ready(function () {
+
+		});
+		function sub(X) {
+			const username = document.getElementById("username").value;
+			const pass = document.getElementById("pawd").value;
+			const test = /^(?=.{5,15}$)[a-zA-Z0-9]*$/;
+
+			//console.log(username);
+			//	console.log(pass);
+			document.getElementById("username").value = '';
+			document.getElementById("pawd").value = '';
+			if (
+				test.test(username) && test.test(pass)) {
+				$.ajax({
+					url: '/sign',
+					type: 'POST',
+					data: {
+						username: username,
+						password: pass
+					},
+					success: function (data) {
+						if (data === "success") {
+							alert('註冊成功');
+							location.href = "/logined";
+							//	console.log("success");
+						} else {
+							//console.log(data);
+							alert("註冊失敗");
+						}
+					}
+				})
+			}
+			else {alert("不符合規定");}
+
+		};
+
+	</script>
+	
+</body>
+
+</html>

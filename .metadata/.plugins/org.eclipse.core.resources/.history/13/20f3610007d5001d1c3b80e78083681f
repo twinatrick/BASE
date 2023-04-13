@@ -1,0 +1,14 @@
+package com.example.demo;
+import javax.servlet.http.HttpSession;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class HttpSessionConfig {
+
+    @Bean
+    public HttpSession httpSession() {
+        // 返回HttpSession的實現，可以根據您的需求進行配置
+        return (HttpSession) new org.apache.catalina.session.StandardSessionFacade(null);
+    }
+}

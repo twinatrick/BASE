@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=iso-8859-1"/>
+    <title>Exercise 1 - Taiwan Railway Information</title>
+    <link href="../Style/style.css" rel="stylesheet" type="text/css" />
+    <script src="../Scripts/jquery-2.1.4.js"></script>
+    <script type="text/javascript">
+        function showTime(time){
+           /*完成*/
+           let times=new Date();
+           let strs="";
+                 
+         
+           strs= times.getFullYear()
+           strs+="-";
+           strs+= times.getMonth()+1;
+           strs+="-";
+           strs+= times.getDate();
+           strs+="   ";
+           strs+= times.getHours();
+           strs+=":";
+           strs+= times.getMinutes();
+           strs+=":";
+           strs+= times.getSeconds();
+         
+           document.getElementById("time").innerHTML="現在時間："+strs;
+            setTimeout('showTime(new Date())',1000);
+          
+        }
+
+
+
+    	function resetAlarm(){	//貪睡
+            
+            if (window.confirm("貪睡鬼還睡嗎")== true){
+                setTimeout(resetAlarm, 10000);
+                window.alert("鬧鐘10秒後再響一次");
+        	    }
+                
+            }
+    	
+
+    	function setAlarm(){	//開啟鬧鐘
+            
+            let altime =new Date();
+            let nowday =new Date();
+            let a,s =0;
+            let sense=0;
+            sense=document.getElementById("hr").value
+            altime.setHours(sense);
+            sense=document.getElementById("min").value
+            altime.setMinutes(sense);
+            sense=document.getElementById("sec").value
+            altime.setSeconds(sense);
+           
+            s=altime.getTime();
+            a=nowday.getTime();
+            //window.alert("鬧鐘時間："+altime.toString());
+            //window.alert("現在時間："+nowday.toString());
+            
+            document.getElementById("times").innerHTML =(s-a)/1000+"差幾秒"; 
+           
+
+
+            if(s-a<=0){
+                window.alert("時間設定錯誤");
+            }else if (1){
+                window.alert("鬧鐘啟動");
+                setTimeout(resetAlarm, s-a);
+                //window.alert("鬧鐘時間："+altime.toString());
+	            }
+                   
+                    
+            
+		
+        
+            }
+        
+    
+        $(document).ready(
+            function() {
+                console.log("1");
+                //call this function to show the time of one Date() object.
+                showTime(new Date());
+                let i=0;   
+                //add the number to time select menu.
+                var str ="";
+                for(i=0;i<=23;i++){
+                    str+="<option value="+i.toString()+">";
+                    str+=i.toString()+"</option>";
+                }
+                console.log("1");
+                document.getElementById("hr").innerHTML = str;
+                str ="";
+                for(i=0;i<=59;i++){
+                    str+="<option value="+ i.toString()+">";
+                    str+= i.toString()+"</option>";
+                    }
+                document.getElementById("min").innerHTML = str;
+                str ="";         
+                for(i=0;i<=59;i++){
+                    str+="<option value="+i.toString()+">";  
+                    str+=i.toString()+"</option>";
+                    }
+                document.getElementById("sec").innerHTML = str;
+
+               
+             }
+        )
+    </script>
+</head>
+<body>
+    <div class="container2">
+		<div class="content">
+            <p>
+                實作一個鬧鐘，時間格式: YYYY-MM-DD HH:MM:SS (必須是動態時鐘)，由下拉式選單(幾時幾分幾秒)來訂鬧鐘。<br/>
+                <li>鬧鈴響時會跳出一個confirm box</li>
+                <li>點選cancel來取消鬧鈴</li>
+                <li>若點選OK，則10秒鐘後鬧鈴會再響，步驟從頭開始</li>
+                <blockquote>
+                    Hint: 使用<a target="_blank" href="http://www.w3schools.com/jsref/jsref_obj_date.asp">Date()</a>
+                    及<a target="_blank" href="http://www.w3schools.com/js/js_timing.asp">Timing Events</a>
+                </blockquote>
+            </p>
+            <p id="time">
+
+          
+            </p>
+            <p id="times">
+
+          
+            </p>
+            <p>
+                <form>設定鬧鈴: 
+                    <select id="hr" >
+                        
+                    </select>
+                  			
+                    
+                    <select id="min"></select>
+                    
+                    <select id="sec" ></select>
+                    &nbsp;
+                    <input type="button" value="確定" onClick="setAlarm()">
+                </form>
+            </p>
+    	</div>
+    </div>
+</body>
+</html>

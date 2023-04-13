@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+	<script src="/js/logch.js"></script>
+</head>
+
+<body>
+	<script type="text/javascript">
+
+		$(document).ready(function () {
+
+			logch();
+
+		});
+
+		function edit() {
+			const test = /^(?=.{8,15}$)[a-zA-Z0-9]+$/;
+			var ids = /^[+-]?(\d+(\.\d*)?|\.\d+)[eE][+-]?\d+$/;
+			id = document.getElementById("id").innerHTML;
+			username = document.getElementById("username").innerHTML;
+			pass = document.getElementById("password").innerHTML;
+
+			if (ids.test(id) &&
+				test.test(username) && test.test(pass)) {
+				$.ajax({
+					url: '/edit2',
+					type: 'POST',
+					data: {
+						id: id,
+						username: username,
+						password: pass
+					},
+					success: function (data) {
+						if (data === "success") {
+							alert('更改成功');
+							location.href = "/logined";
+							console.log("success");
+						} else {
+							console.log(data);
+							alert("更改失敗");
+						}
+					}
+				}
+				)
+			}
+		}
+
+
+	</script>
+
+	<input type="text" id="id" placeholder="請輸入要更改ID">
+	<input type="text" id="username" placeholder="請輸入要更改帳號">
+	<input type="text" id="password" placeholder="請輸入要更改密碼">
+	<button id="btn" onclick="edit()">更改</button>
+</body>
+
+</html>

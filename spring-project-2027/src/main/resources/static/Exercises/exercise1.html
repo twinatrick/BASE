@@ -1,0 +1,237 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=iso-8859-1"/>
+	<link href="../Style/style.css" rel="stylesheet" type="text/css" />
+	<script src="../Scripts/jquery-2.1.4.js"></script>
+	<script type="text/javascript">
+		//JSON Array(縣市車站)
+	    var TRStation = '[{"city":"0","id":"1810","station":"福隆"},{"city":"0","id":"1809","station":"貢寮"},{"city":"0","id":"1808","station":"雙溪"},{"city":"0","id":"1807","station":"牡丹"},{"city":"0","id":"1806","station":"三貂嶺"},{"city":"0","id":"1805","station":"侯硐"},{"city":"0","id":"1804","station":"瑞芳"},{"city":"0","id":"1803","station":"四腳亭"},{"city":"0","id":"1802","station":"暖暖"},{"city":"0","id":"1001","station":"基隆"},{"city":"0","id":"1029","station":"三坑"},{"city":"0","id":"1002","station":"八堵"},{"city":"0","id":"1003","station":"七堵"},{"city":"0","id":"1030","station":"百福"},{"city":"0","id":"1004","station":"五堵"},{"city":"0","id":"1005","station":"汐止"},{"city":"0","id":"1031","station":"汐科"},{"city":"0","id":"1006","station":"南港"},{"city":"0","id":"1007","station":"松山"},{"city":"0","id":"1008","station":"臺北"},{"city":"0","id":"1009","station":"萬華"},{"city":"0","id":"1011","station":"板橋"},{"city":"0","id":"1032","station":"浮洲"},{"city":"0","id":"1012","station":"樹林"},{"city":"0","id":"1013","station":"山佳"},{"city":"0","id":"1014","station":"鶯歌"},{"city":"1","id":"1015","station":"桃園"},{"city":"1","id":"1016","station":"內壢"},{"city":"1","id":"1017","station":"中壢"},{"city":"1","id":"1018","station":"埔心"},{"city":"1","id":"1019","station":"楊梅"},{"city":"1","id":"1020","station":"富岡"},{"city":"10","id":"1231","station":"大湖"},{"city":"10","id":"1232","station":"路竹"},{"city":"10","id":"1233","station":"岡山"},{"city":"10","id":"1234","station":"橋頭"},{"city":"10","id":"1235","station":"楠梓"},{"city":"10","id":"1242","station":"新左營"},{"city":"10","id":"1236","station":"左營"},{"city":"10","id":"1238","station":"高雄"},{"city":"10","id":"1402","station":"鳳山"},{"city":"10","id":"1403","station":"後庄"},{"city":"10","id":"1404","station":"九曲堂"},{"city":"11","id":"1405","station":"六塊厝"},{"city":"11","id":"1406","station":"屏東"},{"city":"11","id":"1407","station":"歸來"},{"city":"11","id":"1408","station":"麟洛"},{"city":"11","id":"1409","station":"西勢"},{"city":"11","id":"1410","station":"竹田"},{"city":"11","id":"1411","station":"潮州"},{"city":"11","id":"1412","station":"崁頂"},{"city":"11","id":"1413","station":"南州"},{"city":"11","id":"1414","station":"鎮安"},{"city":"11","id":"1415","station":"林邊"},{"city":"11","id":"1416","station":"佳冬"},{"city":"11","id":"1417","station":"東海"},{"city":"11","id":"1418","station":"枋寮"},{"city":"11","id":"1502","station":"加祿"},{"city":"11","id":"1503","station":"內獅"},{"city":"11","id":"1504","station":"枋山"},{"city":"12","id":"1507","station":"古莊"},{"city":"12","id":"1508","station":"大武"},{"city":"12","id":"1510","station":"瀧溪"},{"city":"12","id":"1512","station":"金崙"},{"city":"12","id":"1514","station":"太麻里"},{"city":"12","id":"1516","station":"知本"},{"city":"12","id":"1517","station":"康樂"},{"city":"12","id":"1632","station":"臺東"},{"city":"12","id":"1631","station":"山里"},{"city":"12","id":"1630","station":"鹿野"},{"city":"12","id":"1629","station":"瑞源"},{"city":"12","id":"1628","station":"瑞和"},{"city":"12","id":"1627","station":"月美"},{"city":"12","id":"1626","station":"關山"},{"city":"12","id":"1625","station":"海端"},{"city":"12","id":"1624","station":"池上"},{"city":"13","id":"1623","station":"富里"},{"city":"13","id":"1622","station":"東竹"},{"city":"13","id":"1621","station":"東里"},{"city":"13","id":"1619","station":"玉里"},{"city":"13","id":"1617","station":"三民"},{"city":"13","id":"1616","station":"瑞穗"},{"city":"13","id":"1614","station":"富源"},{"city":"13","id":"1613","station":"大富"},{"city":"13","id":"1612","station":"光復"},{"city":"13","id":"1611","station":"萬榮"},{"city":"13","id":"1610","station":"鳳林"},{"city":"13","id":"1609","station":"南平"},{"city":"13","id":"1608","station":"溪口"},{"city":"13","id":"1607","station":"豐田"},{"city":"13","id":"1606","station":"壽豐"},{"city":"13","id":"1605","station":"平和"},{"city":"13","id":"1604","station":"志學"},{"city":"13","id":"1602","station":"吉安"},{"city":"13","id":"1715","station":"花蓮"},{"city":"13","id":"1714","station":"北埔"},{"city":"13","id":"1713","station":"景美"},{"city":"13","id":"1712","station":"新城"},{"city":"13","id":"1711","station":"崇德"},{"city":"13","id":"1710","station":"和仁"},{"city":"13","id":"1709","station":"和平"},{"city":"14","id":"1708","station":"漢本"},{"city":"14","id":"1706","station":"武塔"},{"city":"14","id":"1705","station":"南澳"},{"city":"14","id":"1704","station":"東澳"},{"city":"14","id":"1703","station":"永樂"},{"city":"14","id":"1827","station":"蘇澳"},{"city":"14","id":"1826","station":"蘇澳新"},{"city":"14","id":"1825","station":"新馬"},{"city":"14","id":"1824","station":"冬山"},{"city":"14","id":"1823","station":"羅東"},{"city":"14","id":"1822","station":"中里"},{"city":"14","id":"1821","station":"二結"},{"city":"14","id":"1820","station":"宜蘭"},{"city":"14","id":"1819","station":"四城"},{"city":"14","id":"1818","station":"礁溪"},{"city":"14","id":"1817","station":"頂埔"},{"city":"14","id":"1816","station":"頭城"},{"city":"14","id":"1815","station":"外澳"},{"city":"14","id":"1814","station":"龜山"},{"city":"14","id":"1813","station":"大溪"},{"city":"14","id":"1812","station":"大里"},{"city":"14","id":"1811","station":"石城"},{"city":"15","id":"1908","station":"菁桐"},{"city":"15","id":"1907","station":"平溪"},{"city":"15","id":"1906","station":"嶺腳"},{"city":"15","id":"1905","station":"望古"},{"city":"15","id":"1904","station":"十分"},{"city":"15","id":"1903","station":"大華"},{"city":"16","id":"2203","station":"竹中"},{"city":"16","id":"2204","station":"上員"},{"city":"16","id":"2211","station":"榮華"},{"city":"16","id":"2205","station":"竹東"},{"city":"16","id":"2206","station":"橫山"},{"city":"16","id":"2207","station":"九讚頭"},{"city":"16","id":"2208","station":"合興"},{"city":"16","id":"2209","station":"富貴"},{"city":"16","id":"2210","station":"內灣"},{"city":"17","id":"2702","station":"源泉"},{"city":"17","id":"2703","station":"濁水"},{"city":"17","id":"2704","station":"龍泉"},{"city":"17","id":"2705","station":"集集"},{"city":"17","id":"2706","station":"水里"},{"city":"17","id":"2707","station":"車埕"},{"city":"18","id":"5101","station":"長榮大學"},{"city":"18","id":"5102","station":"沙崙"},{"city":"2","id":"1021","station":"湖口"},{"city":"2","id":"1022","station":"新豐"},{"city":"2","id":"1023","station":"竹北"},{"city":"2","id":"1024","station":"北新竹"},{"city":"2","id":"1025","station":"新竹"},{"city":"2","id":"1026","station":"香山"},{"city":"-2","id":"1103","station":"談文南"},{"city":"-2","id":"1237","station":"鼓山"},{"city":"-2","id":"1119","station":"大肚溪南"},{"city":"-2","id":"1633","station":"馬(廢)蘭"},{"city":"-2","id":"1634","station":"臺(廢)東"},{"city":"-2","id":"1635","station":"舞鶴"},{"city":"-2","id":"1505","station":"枋野"},{"city":"-2","id":"1506","station":"中央"},{"city":"-2","id":"2302","station":"臺中港貨"},{"city":"-2","id":"2402","station":"龍井煤場"},{"city":"-2","id":"2502","station":"神岡"},{"city":"-2","id":"2802","station":"南調"},{"city":"-2","id":"2902","station":"高雄港"},{"city":"-2","id":"3102","station":"前鎮"},{"city":"-2","id":"3202","station":"花蓮港"},{"city":"-2","id":"3302","station":"中興一號"},{"city":"-2","id":"3402","station":"中興二號"},{"city":"-2","id":"3902","station":"機廠"},{"city":"-2","id":"4102","station":"樹調"},{"city":"-2","id":"4202","station":"東港支線"},{"city":"-2","id":"4302","station":"東南支線"},{"city":"-2","id":"2002","station":"深澳"},{"city":"-2","id":"2102","station":"五福"},{"city":"-2","id":"2103","station":"林口"},{"city":"-2","id":"2104","station":"電廠"},{"city":"-2","id":"2105","station":"桃中"},{"city":"-2","id":"2106","station":"寶山"},{"city":"-2","id":"2107","station":"南祥"},{"city":"-2","id":"2108","station":"長興"},{"city":"-2","id":"1511","station":"多良"},{"city":"-2","id":"1620","station":"安通"},{"city":"3","id":"1027","station":"崎頂"},{"city":"3","id":"1028","station":"竹南"},{"city":"3","id":"1102","station":"談文"},{"city":"3","id":"1104","station":"大山"},{"city":"3","id":"1105","station":"後龍"},{"city":"3","id":"1106","station":"龍港"},{"city":"3","id":"1107","station":"白沙屯"},{"city":"3","id":"1108","station":"新埔"},{"city":"3","id":"1109","station":"通霄"},{"city":"3","id":"1110","station":"苑裡"},{"city":"3","id":"1302","station":"造橋"},{"city":"3","id":"1304","station":"豐富"},{"city":"3","id":"1305","station":"苗栗"},{"city":"3","id":"1307","station":"南勢"},{"city":"3","id":"1308","station":"銅鑼"},{"city":"3","id":"1310","station":"三義"},{"city":"4","id":"1111","station":"日南"},{"city":"4","id":"1112","station":"大甲"},{"city":"4","id":"1113","station":"臺中港"},{"city":"4","id":"1114","station":"清水"},{"city":"4","id":"1115","station":"沙鹿"},{"city":"4","id":"1116","station":"龍井"},{"city":"4","id":"1117","station":"大肚"},{"city":"4","id":"1118","station":"追分"},{"city":"4","id":"1314","station":"泰安"},{"city":"4","id":"1315","station":"后里"},{"city":"4","id":"1317","station":"豐原"},{"city":"4","id":"1318","station":"潭子"},{"city":"4","id":"1323","station":"太原"},{"city":"4","id":"1319","station":"臺中"},{"city":"4","id":"1322","station":"大慶"},{"city":"4","id":"1320","station":"烏日"},{"city":"4","id":"1324","station":"新烏日"},{"city":"4","id":"1321","station":"成功"},{"city":"5","id":"1120","station":"彰化"},{"city":"5","id":"1202","station":"花壇"},{"city":"5","id":"1240","station":"大村"},{"city":"5","id":"1203","station":"員林"},{"city":"5","id":"1204","station":"永靖"},{"city":"5","id":"1205","station":"社頭"},{"city":"5","id":"1206","station":"田中"},{"city":"5","id":"1207","station":"二水"},{"city":"7","id":"1208","station":"林內"},{"city":"7","id":"1209","station":"石榴"},{"city":"7","id":"1210","station":"斗六"},{"city":"7","id":"1211","station":"斗南"},{"city":"7","id":"1212","station":"石龜"},{"city":"8","id":"1213","station":"大林"},{"city":"8","id":"1214","station":"民雄"},{"city":"8","id":"1241","station":"嘉北"},{"city":"8","id":"1215","station":"嘉義"},{"city":"8","id":"1217","station":"水上"},{"city":"8","id":"1218","station":"南靖"},{"city":"9","id":"1219","station":"後壁"},{"city":"9","id":"1220","station":"新營"},{"city":"9","id":"1221","station":"柳營"},{"city":"9","id":"1222","station":"林鳳營"},{"city":"9","id":"1223","station":"隆田"},{"city":"9","id":"1224","station":"拔林"},{"city":"9","id":"1225","station":"善化"},{"city":"9","id":"1244","station":"南科"},{"city":"9","id":"1226","station":"新市"},{"city":"9","id":"1227","station":"永康"},{"city":"9","id":"1239","station":"大橋"},{"city":"9","id":"1228","station":"臺南"},{"city":"9","id":"1229","station":"保安"},{"city":"9","id":"1230","station":"中洲"}]';
+		tra= JSON.parse(TRStation);
+		let colsch=0;	
+		$(document).ready(function() {
+			
+			 City=document.getElementById("FromCity").value;
+			// console.log(City);
+
+		});
+
+		function fcfs_enable() {	
+			
+			document.getElementById("FromCity").disabled=false;
+			
+
+		}
+
+		function fcfs_disable(){
+
+			document.getElementById("FromStation").disabled=true;
+			document.getElementById("FromCity").disabled=true;
+
+
+
+			var radioGroup = document.getElementsByName("StationName");
+			for (var i = 0; i < radioGroup.length; i++) {
+  				if (radioGroup[i].checked) {
+					allselect=radioGroup[i].value;
+					radioselct(allselect);
+					
+					
+
+					
+
+					
+				
+					}
+
+
+
+
+    													// radiobutton已经被选中
+ 				}
+			}
+
+			function radioselct(x){
+			let arraysetbox=new Array();
+			let arraysetid=new Array();
+			let arraysetcity	;
+			let j=0;
+			let y;
+			let is =document.getElementById("FromCity").value;
+			let position = -1; // 初始化位置为-1，表示未找到
+			for (let i = 0; i < tra.length; i++) {
+				if (tra[i].id === x) {
+    				position = i; 
+					// 找到后将位置记录为当前索引
+    			//break; // 停止循环
+				//console.log(position); 
+				//console.log(tra[position].station);
+				arraysetid[j]	=position;
+				arraysetbox[j]=tra[position].station;
+				arraysetcity=tra[position].city;
+				document.getElementById("FromCity").disabled=false;
+				
+				//arraysetcity=document.getElementById("FromCity").value;
+				
+
+				var selectElement = document.getElementById("FromCity");
+				console.log(arraysetcity);
+				// 设置选中值
+				selectElement.value = arraysetcity;
+				
+				//console.log(document.getElementById("FromCity").value);
+				//arraysetcity=document.getElementById("FromCity").value.innerHTML;
+				//console.log(arraysetcity);
+				j++;
+  					}
+				}		
+				document.getElementById("FromCity").disabled=false;
+				draw(arraysetbox);
+				//drawCITY(arraysetcity);
+				document.getElementById("FromStation").disabled=true;
+				document.getElementById("FromCity").disabled=true;
+		}
+		
+		
+		function selectcity(){
+			let arraysetbox=new Array();
+			let arraysetid=new Array();
+			let j=0;
+			let is =document.getElementById("FromCity").value;
+			let position = -1; // 初始化位置为-1，表示未找到
+			for (let i = 0; i < tra.length; i++) {
+				if (tra[i].city === is) {
+    				position = i; // 找到后将位置记录为当前索引
+    			//break; // 停止循环
+				//console.log(position); 
+				//console.log(tra[position].station);
+				arraysetid[j]	=position;
+				arraysetbox[j]=tra[position].station;
+				j++;
+  					}
+				}		
+			
+				draw(arraysetbox);
+				document.getElementById("FromStation").disabled=false;
+				
+		}
+		function draw(xx){
+			str ="";
+            for(i=0;i<xx.length;i++){
+                str+="<option value="+ xx[i]+">";
+                str+= xx[i]+"</option>";
+                }
+            document.getElementById("FromStation").innerHTML = str;
+				console.log(xx);
+		}
+			
+	</script>
+</head>
+<body>
+	<div class="container2">	
+		<div class="content">
+	        <p>
+	            實作<a href="http://twtraffic.tra.gov.tw/twrail/" target="_blank">台鐵時刻表查詢</a>的上半部，細述如下：<br/>
+	            <li>一般情況下左邊兩個下拉式選單為disable狀態(無法選取)</li>
+	            <li>可直接由單選按鈕選擇車站</li>
+	            <li>若點選「其他」則下拉式選單變為enable狀態</li>
+	            <li>第一個下拉式選單選擇「臺北地區」則第二個將自動顯示台北地區的車站，其他地區亦然</li>
+				<blockquote>
+					Hint: JSONArray,onChange
+				</blockquote>
+	        </p>
+	        
+	        <p>
+	            <table width="100%" align="center" class="mainpage">
+	                <tr>
+	                    <td width="10" rowspan="2"></td>
+	                    <td width="180" rowspan="2">
+	                        <select id="FromCity" name="FromCity" disabled=disable onclick="selectcity()">
+	                            <option value="-1">請選擇縣市</option>
+								<option value="0">臺北地區</option>
+								<option value="1">桃園地區</option>
+								<option value="2">新竹地區</option>
+								<option value="3">苗栗地區</option>
+								<option value="4">臺中地區</option>
+								<option value="5">彰化地區</option>
+								<option value="6">南投地區</option>
+								<option value="7">雲林地區</option>
+								<option value="8">嘉義地區</option>
+								<option value="9">臺南地區</option>
+								<option value="10">高雄地區</option>
+								<option value="11">屏東地區</option>
+								<option value="12">臺東地區</option>
+								<option value="13">花蓮地區</option>
+								<option value="14">宜蘭地區</option>
+								<option value="15">平溪線</option>
+								<option value="16">內灣線</option>
+								<option value="17">集集線</option>
+								<option value="18">沙崙線</option>
+	                        </select>
+	                        &nbsp;
+	                        <select id="FromStation" name="FromStation" disabled=disable>
+	                            <option value="-1"></option>
+	                        </select>
+	                    </td>
+
+	                    <td width="55">
+	                        <input name="StationName" type="radio" id="lbf_0" value="0" onClick="fcfs_enable()" /><label for="lbf_0">其他</label>     
+	                    </td>
+	                    <td width="55">
+	                        <input name="StationName" type="radio" id="lbf_1008" value="1008" onClick="fcfs_disable()" /><label for="lbf_1008">臺北</label>
+	                    </td>
+	                    <td width="55">
+	                        <input name="StationName" type="radio" id="lbf_1011" value="1011" onClick="fcfs_disable()" /><label for="lbf_1011">板橋</label>
+	                    </td>
+	                    <td width="55">
+	                        <input name="StationName" type="radio" id="lbf_1015" value="1015" onClick="fcfs_disable()" /><label for="lbf_1015">桃園</label>
+	                    </td>
+	                    <td width="55">
+	                        <input name="StationName" type="radio" id="lbf_1017" value="1017" onClick="fcfs_disable()" /><label for="lbf_1017">中壢</label>
+	                    </td>
+	                    <td width="55">
+	                        <input name="StationName" type="radio" id="lbf_1025" value="1025" onClick="fcfs_disable()" /><label for="lbf_1025">新竹</label>
+	                    </td>
+	                    <td width="55">
+	                        <input name="StationName" type="radio" id="lbf_1319" value="1319" onClick="fcfs_disable()" /><label for="lbf_1319">臺中</label>
+	                    </td>
+	                    <td width="55">
+	                        <input name="StationName" type="radio" id="lbf_1120" value="1120" onClick="fcfs_disable()" /><label for="lbf_1120">彰化</label>
+	                    </td>
+	                </tr>
+
+	                <tr>
+	                    <td>
+	                        <input name="StationName" type="radio" id="lbf_1210" value="1210" onClick="fcfs_disable()" /><label for="lbf_1210">斗六</label>
+	                    </td>
+	                    <td>
+	                        <input name="StationName" type="radio" id="lbf_1215" value="1215" onClick="fcfs_disable()" /><label for="lbf_1215">嘉義</label>
+	                    </td>
+	                    <td>
+	                        <input name="StationName" type="radio" id="lbf_1228" value="1228" onClick="fcfs_disable()" /><label for="lbf_1228">臺南</label>
+	                    </td>
+	                    <td>
+	                        <input name="StationName" type="radio" id="lbf_1238" value="1238" onClick="fcfs_disable()" /><label for="lbf_1238">高雄</label>
+	                    </td>
+	                    <td>
+	                        <input name="StationName" type="radio" id="lbf_1406" value="1406" onClick="fcfs_disable()" /><label for="lbf_1406">屏東</label>
+	                    </td>
+	                    <td>
+	                        <input name="StationName" type="radio" id="lbf_1820" value="1820" onClick="fcfs_disable()" /><label for="lbf_1820">宜蘭</label>
+	                    </td>
+	                    <td>
+	                        <input name="StationName" type="radio" id="lbf_1715" value="1715" onClick="fcfs_disable()" /><label for="lbf_1715">花蓮</label>
+	                    </td>
+	                    <td>
+	                        <input name="StationName" type="radio" id="lbf_1632" value="1632" onClick="fcfs_disable()" /><label for="lbf_1632">臺東</label>
+	                    </td>
+	                </tr>
+	            </table>
+	        
+	        </p>
+	        
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+
+<body>
+
+
+
+
+
+
+
+
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="http://localhost/Scripts/logch.js"></script>
+	<script type="text/javascript">
+
+		$(document).ready(function () {
+
+		
+		});
+
+
+		function sub() {
+			const username = document.getElementById("username").value;
+			const pass = document.getElementById("pawd").value;
+			console.log(username);
+			console.log(pass);
+			document.getElementById("username").value = '';
+			document.getElementById("pawd").value = '';
+			if (username != '' && pass != '') {
+				$.ajax({
+					url: '/login',
+					type: 'POST',
+					data: {
+						username: username,
+						password: pass
+					},
+					success: function (data) {
+						if (data === "success") {
+							// 登入成功
+							alert('登入成功');
+							location.href = "/logined";
+							console.log("success");
+						}
+						else {
+							console.log(data);
+							alert("登入失敗");
+						}
+					}
+				}
+				)
+			}
+			else {alert("不得為空");}
+
+		};
+
+	</script>
+	<input type="text" id="username" placeholder="請輸入帳號">
+	<input type="text" id="pawd" placeholder="請輸入密碼">
+	<button id="submit-btn" onclick="sub()">登入</button>
+</body>
+
+
+
+
+</html>

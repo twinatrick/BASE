@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+    <input type="text" id="username" placeholder="請輸入帳號">
+    <input type="password" id="password" placeholder="請輸入密碼">
+    <button id="submit-btn">登入</button>
+    
+
+
+
+
+
+
+
+
+
+    <script>
+        $("#submit-btn").click(function() {
+         var username = $("#username").val();
+          var password = $("#password").val();
+  
+     $.ajax({
+        url: "/login",
+        method: "POST",
+        data: { username: username, password: password },
+            success: function(result) {
+      // 登入成功，處理後續操作
+        },
+            error: function() {
+      // 登入失敗，顯示錯誤訊息
+        }
+        });
+    });
+
+    </script>
+</body>
+
+
+
+
+</html>

@@ -1,0 +1,73 @@
+package com.example.demo;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowCallbackHandler;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import jakarta.servlet.http.HttpSession;
+
+public class server {
+	
+private static final RowCallbackHandler StaffModelMapper = null;
+	
+	@Autowired
+	private HttpSession httpSession;
+
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+
+	
+	
+	
+	
+	public StaffModel getData(StaffModel sm) {
+		
+		 String selectQuery = "SELECT * FROM staffInfo WHERE EMAIL = \'" + sm.getEmail() + "\' AND PASSWORD = \'" + sm.getPassword() + "\'";
+
+	    List<StaffModel> result = jdbcTemplate.query(selectQuery, new StaffModelMapper());
+
+	    if (result.size() > 0) {
+	        return result.get(0);
+	    } else {
+	        return null;
+	    }
+		
+	}
+	
+	
+	
+	public StaffModel TryData(StaffModel sm) {
+		 String selectQuery = "SELECT * FROM staffInfo WHERE EMAIL = \'" + sm.getEmail()+"\'";
+//	 	    System.out.printf(selectQuery);
+
+	 	    List<StaffModel> result = jdbcTemplate.query(selectQuery, new StaffModelMapper());
+	 	   System.out.printf("\n\n\n1234\n");
+	 		 
+	 	    if (result.size() > 0) {
+	 	        return result.get(0);
+	 	    } else {
+	 	        return null;
+	 	    }
+	 		
+	 	}
+
+
+
+	public void setcookie(String email, String sessionId) {
+		
+		 Cookie cookie = new Cookie("sessionId", sessionId); // sessionId 為傳入的 SessionID 值
+	        // 設置 Cookie 的屬性
+	        cookie.setMaxAge(3600); // 設置 Cookie 的過期時間（以秒為單位），這裡設置為 1 小時
+	        cookie.setPath("/"); // 設置 Cookie 的路徑，這裡設置為根路徑，表示整個網站都可以訪問該 Cookie
+	        // 添加 Cookie 到 HTTP 響應
+	      
+	        
+		// TODO Auto-generated method stub
+		
+	}
+}
